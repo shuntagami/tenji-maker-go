@@ -10,15 +10,15 @@ import (
 // 受け取った複数のかな文字を点字に変換します
 func Build(text string) string {
 	var matrix [][]string
-	var array []string
+	var sl []string
 
 	// textをスペースで分割
-	arr := strings.Split(text, " ")
-	for _, s := range arr {
-		matrix = append(matrix, tenji.CreateSingleUnit(s))
+	chars := strings.Split(text, " ")
+	for _, char := range chars {
+		matrix = append(matrix, tenji.CreateSingleUnit(char))
 	}
-	for _, arr := range helper.Transpose(matrix) {
-		array = append(array, strings.Join(arr, " "))
+	for _, s := range helper.Transpose(matrix) {
+		sl = append(sl, strings.Join(s, " "))
 	}
-	return strings.Join(array, "\n")
+	return strings.Join(sl, "\n")
 }
